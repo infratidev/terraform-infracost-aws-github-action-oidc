@@ -4,7 +4,7 @@ variable "region" {
 }
 variable "instance_type" {
     description = "Default Instance"
-    default     =  "t2.micro"
+    default     =  "t2.large"
 }
 
 variable "vpc_cidr" {
