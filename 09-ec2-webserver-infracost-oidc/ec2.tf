@@ -11,12 +11,12 @@ data "aws_ami" "debian" {
 }
 
 resource "aws_instance" "web" {
-  ami             = data.aws_ami.debian.id 
+  ami             = data.aws_ami.debian.id
   subnet_id       = aws_subnet.public_subnet.id
   security_groups = [aws_security_group.sg.id]
   instance_type   = var.instance_type
 
-user_data = <<-EOF
+  user_data = <<-EOF
   #!/bin/bash
   echo "*** Installing apache2"
   sudo apt update -y
@@ -28,12 +28,12 @@ user_data = <<-EOF
 
   volume_tags = {
     Name = "web_instance"
-  } 
+  }
 
- tags = {
+  tags = {
     Name        = var.name
     Environment = var.env
     Provisioner = "Terraform Infracost"
-   }
+  }
 
 }
